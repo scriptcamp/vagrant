@@ -1,12 +1,12 @@
 Vagrant.configure("2") do |config|
     config.vm.provision "shell", inline: <<-SHELL
         apt-get update -y
-        echo "10.0.0.10  devopscube" >> /etc/hosts
+        echo "10.0.0.10  lab" >> /etc/hosts
     SHELL
     
-    config.vm.define "lab" do |master|
+    config.vm.define "lab" do |lab|
       master.vm.box = "bento/ubuntu-18.04"
-      master.vm.hostname = "master-node"
+      master.vm.hostname = "lab"
       master.vm.network "private_network", ip: "10.0.0.10"
       master.vm.provider "virtualbox" do |vb|
           vb.memory = 4048
